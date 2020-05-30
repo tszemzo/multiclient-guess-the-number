@@ -1,0 +1,7 @@
+*.o
+*.py
+Makefile_client_server
+*.pdf
+.vscode/
+*.txt
+filter_options
