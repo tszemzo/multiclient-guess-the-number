@@ -1,13 +1,17 @@
 #ifndef SERVER_H
 #define SERVER_H
 
-#include "common_socket.h"
 #include <string>
+#include <vector>
+#include "common_socket.h"
+#include "server_numbers_parser.h"
 
 class Server {
 
 private:
     Socket socket;
+    NumbersParser parser;
+    std::vector<int> numbers;
     bool running;
 
     // No copiable.

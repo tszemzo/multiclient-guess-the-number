@@ -1,9 +1,10 @@
 #include <iostream>
 #include "server.h"
 
-Server::Server(const char* service, const char* numbers_file) : socket(service) {
-  socket.listen();
-  running = true;
+Server::Server(const char* service, const char* numbers_file) : socket(service), parser(numbers_file) {
+    parser.parse_file(numbers);
+    socket.listen();
+    running = true;
 }
 
 void Server::run() {

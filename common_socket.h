@@ -6,7 +6,6 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/socket.h>
-#include "common_os_error.h"
 
 /* Clase que representa un socket.*/
 class Socket {
