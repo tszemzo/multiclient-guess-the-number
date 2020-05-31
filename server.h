@@ -1,13 +1,14 @@
 #ifndef SERVER_H
 #define SERVER_H
 
+#include "common_socket.h"
 #include <string>
 
 class Server {
 
 private:
-    // Socket socket;
-    bool keep_running;
+    Socket socket;
+    bool running;
 
     // No copiable.
     Server(const Server &other) = delete;
@@ -15,7 +16,7 @@ private:
 
 public:
     // Constructor.
-    Server(const char* port, const char* numbers_file);
+    Server(const char* service, const char* numbers_file);
 
     void run();
     void stop();

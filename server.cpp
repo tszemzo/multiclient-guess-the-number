@@ -1,28 +1,29 @@
 #include <iostream>
 #include "server.h"
 
-#define QUEUE_LENGTH 10
-
-// Server::Server(const char* port, const char* numbers_file) : socket(port), {
-//   socket.listen(QUEUE_LENGTH);
-// }
-
-Server::Server(const char* port, const char* numbers_file) {
-    keep_running = true;
+Server::Server(const char* service, const char* numbers_file) : socket(service) {
+  socket.listen();
+  running = true;
 }
 
 void Server::run() {
-    while (keep_running) {
+    while (running) {
         try {
             std::cout << "Estamos corriendo" << std::endl;
-            keep_running = false;
-            // Socket client_socket = socket.accept();
+            Socket client = socket.accept();
+            std::cout << "Hemos aceptado" << std::endl;
+            running = false;
         } catch (std::exception& e) {
-            if (!keep_running) {
+            if (!running) {
                 return;
             }
         }
     }
+}
+
+void Server::stop(){
+    running = false;
+    socket.shutdown(SHUT_RDWR);
 }
 
 Server::~Server() {
