@@ -33,7 +33,7 @@ void NumbersParser::validate_number(std::string number){
 	int int_number = std::stoi(number);
 	if (int_number < MIN_NUMBER || int_number > MAX_NUMBER) {
 		throw OSError(OUT_OF_RANGE_ERROR_MSG);
-	};
+	}
 	if (number[0] == number[1] ||
 		number[0] == number[2] ||
 		number[1] == number[2]) {

@@ -2,6 +2,7 @@
 #include <string>
 #include "common_os_error.h"
 #include "client.h"
+#include "common_protocol.h"
 
 #define SUCCESS 0
 #define ERROR 1
@@ -15,19 +16,11 @@ int main(int argc, char* argv[]) {
 		if (argc != PARAMS) {
 			throw OSError(ARGS_ERROR_MSG);
 		}
-		std::cout << "Hola cliente" << std::endl;
-		Client client(argv[HOSTNAME], argv[SERVICE]);
-        // client.run();
-		while (client.is_alive()){
-			std::string input;
-			std::getline(std::cin, input);
-			if (client.is_alive())
-				client.send_string(input);
-		}
-
+		Protocol protocol(argv[HOSTNAME], argv[SERVICE]);
+		Client client(&protocol);
+        client.run();
 	} catch (const std::exception(&e)) {
         std::cout << e.what() << std::endl;
-
     } catch (...) {
         std::cout << "Ocurrió un problema" << std::endl;
     }

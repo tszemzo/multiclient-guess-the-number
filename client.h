@@ -1,13 +1,12 @@
 #ifndef CLIENT_H
 #define CLIENT_H
 
-#include "common_socket.h"
+#include "common_protocol.h"
 #include <string>
 
 class Client {
-
 private:
-    Socket socket;
+    Protocol* protocol;
     bool alive;
 
     // No copiable.
@@ -16,12 +15,10 @@ private:
 
 public:
     // Constructor.
-    Client(const char* hostname, const char* service);
+    Client(Protocol* Protocol);
 
-    void send_string(const std::string& message);
-
+    void parse_input(std::string input);
     bool is_alive();
-
     void run();
     void stop();
 

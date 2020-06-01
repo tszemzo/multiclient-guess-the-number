@@ -1,4 +1,5 @@
 #include <exception>
+#include <string>
 
 /* Excepcion lanzada cuando los parametros
  * de la llamada al server/client son erroneos.
@@ -14,5 +15,5 @@ public:
         return error_message.c_str();
     }
 
-    ~OSError() throw () {}
+    ~OSError() throw() {}
 };

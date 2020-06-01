@@ -5,7 +5,9 @@
 #include <stdexcept>
 #include <string>
 #include <cerrno>
+#include <utility>
 #include "common_socket.h"
+#include "common_os_error.h"
 
 #define GETADDRINFO_ERROR "Getaddrinfo Error"
 #define CREATE_ERROR "Socket create Error"
@@ -59,6 +61,8 @@ Socket Socket::accept(){
 
 int Socket::send(const char* buffer, size_t length){
     size_t bytes_sent = 0;
+    std::cout << "Sending " << buffer << std::endl;
+    std::cout << "Sending " << length << std::endl;
     while (bytes_sent < length) {
         ssize_t status = ::send(this->fd,
                               &buffer[bytes_sent],
@@ -77,6 +81,7 @@ int Socket::send(const char* buffer, size_t length){
 }
 
 int Socket::receive(char* buffer, size_t length){
+    std::cout << "Entro al receiver" << std::endl;
     size_t bytes_received = 0;
     while (bytes_received < length) {
         ssize_t status = recv(this->fd,
@@ -134,7 +139,6 @@ void Socket::initialize_socket(Socket& s, const char* ip,
     for (remote = addrinfo;
          remote != nullptr && !connection_established;
          remote = remote->ai_next) {
-
         socket_fd = socket(remote->ai_family,
                            remote->ai_socktype,
                            remote->ai_protocol);

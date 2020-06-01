@@ -1,6 +1,7 @@
 #ifndef SOCKET_H
 #define SOCKET_H
 
+#include <iostream>
 #include <climits>
 #include <netdb.h>
 #include <unistd.h>
@@ -34,10 +35,10 @@ public:
     /* Crea un socket y realiza un bind al puerto indicado */
     explicit Socket(const char* service);
 
-    /* Crea un socket y realiza un connect a la ip/hostname y puerto indicados */
+    /* Crea un socket y realiza un connect a la ip y puerto indicados */
     Socket(const char* ip, const char* service);
 
-    /* Realiza la operacion de listen del socket. Se establece en 10 el maximo */
+    /* Realiza la operacion de listen del socket. Se establece en 10 el max */
     /* del tamaño de la cola para conexiones en espera */
     void listen();
 

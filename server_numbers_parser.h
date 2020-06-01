@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <fstream>
 #include <vector>
+#include <string>
 
 /*Clase que parsea el archivo de numeros cuando se inicia el servidor.*/
 class NumbersParser {

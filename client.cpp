@@ -1,31 +1,39 @@
 #include <iostream>
 #include "client.h"
+#include "client_input_parser.h"
+#include "common_os_error.h"
 
-Client::Client(const char* hostname, const char* service) : socket(hostname, service) {
-  alive = true;
+Client::Client(Protocol* protocol) {
+    protocol = protocol;
+    alive = true;
 }
 
 void Client::run() {
+    InputParser input_parser;
+    std::cout << "Client running" << std::endl;
     while (alive) {
         try {
-            std::cout << "Client running" << std::endl;
-        } catch (std::exception& e) {
-            if (!alive) {
-                return;
+            std::string input;
+            std::getline(std::cin, input);
+            char command = input_parser.parse(input);
+            protocol->send_command(command);
+            if (input_parser.is_number(input)) {
+                int number = std::stoi(input);
+                protocol->send_number(number);
             }
+            std::string response = protocol->receive_response();
+            if (response == "") this->stop();
+            std::cout << "The response was: " << response << std::endl;
+        } catch (OSError& e) {
+            std::cout << e.what() << std::endl;
+            continue;
         }
     }
 }
 
-void Client::send_string(const std::string& message) {
-    int size = message.size();
-    std::cout << "Te mando " << message.data() << std::endl;
-    socket.send(message.data(), size);
-}
-
-void Client::stop(){
+void Client::stop() {
     alive = false;
-    socket.shutdown(SHUT_RDWR);
+    protocol->shutdown(SHUT_RDWR);
 }
 
 bool Client::is_alive() {

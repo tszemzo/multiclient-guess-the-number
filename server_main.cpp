@@ -18,7 +18,9 @@ int main(int argc, char* argv[]) {
         }
         std::cout << "Hello Server" << std::endl;
         Server server(argv[SERVICE], argv[NUMBERS_FILE]);
+        // lanzo el thread
         server.run();
+        // chequeo si alguino me manda una Q, cierro todo.
         // while (true){
         //     std::string input;
         //     std::cin >> input;
@@ -28,11 +30,9 @@ int main(int argc, char* argv[]) {
         //     }
         // }
         return SUCCESS;
-
     } catch (const std::exception(&e)) {
         std::cout << e.what() << std::endl;
         return ERROR;
-
     } catch (...) {
         std::cout << "Ocurrió un problema" << std::endl;
         return ERROR;

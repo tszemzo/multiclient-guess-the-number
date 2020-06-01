@@ -7,7 +7,6 @@
 #include "server_numbers_parser.h"
 
 class Server {
-
 private:
     Socket socket;
     NumbersParser parser;
