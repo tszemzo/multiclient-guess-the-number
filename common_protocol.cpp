@@ -45,19 +45,22 @@ uint16_t Protocol::receive_number(){
     socket.receive(number_buffer, NUMBER_SIZE);
     uint16_t number;
     memcpy(&number, number_buffer, NUMBER_SIZE);
-    uint16_t value = ntohl(number);
+    uint16_t value = ntohs(number);
+    std::cout << "The protocol is receiveing " << value << std::endl; 
     return value;
 }
 
 void Protocol::send_number(int& number) {
     // Big endian
-    uint16_t big_endian_number = htonl(number);
+    // uint16_t big_endian_number = htons(number);
+    // std::cout << "the big endian " << big_endian_number << std::endl;
     char number_buffer[NUMBER_SIZE];
-    memcpy(number_buffer, &big_endian_number, NUMBER_SIZE);
+    memcpy(number_buffer, &number, NUMBER_SIZE);
+    std::cout << "What we have on the buff: " << number_buffer << std::endl;
     socket.send(number_buffer, NUMBER_SIZE);
 }
 
-void Protocol::send_command(char& command) {
+void Protocol::send_command(char command) {
     char command_buffer[COMMAND_SIZE];
     memcpy(command_buffer, &command, COMMAND_SIZE);
     socket.send(command_buffer, COMMAND_SIZE);

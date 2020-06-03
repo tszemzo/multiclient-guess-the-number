@@ -36,7 +36,7 @@ public:
     void send_number(int& number);
 
     /* Envia un comando */
-    void send_command(char& command);
+    void send_command(char command);
 
     /* Envía un string */
     void send_string(const std::string& message);

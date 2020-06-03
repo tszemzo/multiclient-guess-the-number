@@ -6,7 +6,7 @@
 
 class Client {
 private:
-    Protocol* protocol;
+    Protocol* socket_protocol;
     bool alive;
 
     // No copiable.

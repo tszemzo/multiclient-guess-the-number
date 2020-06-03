@@ -4,7 +4,7 @@
 #include "common_os_error.h"
 
 Client::Client(Protocol* protocol) {
-    protocol = protocol;
+    socket_protocol = protocol;
     alive = true;
 }
 
@@ -16,12 +16,14 @@ void Client::run() {
             std::string input;
             std::getline(std::cin, input);
             char command = input_parser.parse(input);
-            protocol->send_command(command);
+            std::cout << "Command: " << command << std::endl;
+            socket_protocol->send_command(command);
             if (input_parser.is_number(input)) {
                 int number = std::stoi(input);
-                protocol->send_number(number);
+                std::cout << number << std::endl;
+                socket_protocol->send_number(number);
             }
-            std::string response = protocol->receive_response();
+            std::string response = socket_protocol->receive_response();
             if (response == "") this->stop();
             std::cout << "The response was: " << response << std::endl;
         } catch (OSError& e) {
@@ -33,7 +35,7 @@ void Client::run() {
 
 void Client::stop() {
     alive = false;
-    protocol->shutdown(SHUT_RDWR);
+    socket_protocol->shutdown(SHUT_RDWR);
 }
 
 bool Client::is_alive() {

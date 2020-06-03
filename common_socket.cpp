@@ -61,8 +61,6 @@ Socket Socket::accept(){
 
 int Socket::send(const char* buffer, size_t length){
     size_t bytes_sent = 0;
-    std::cout << "Sending " << buffer << std::endl;
-    std::cout << "Sending " << length << std::endl;
     while (bytes_sent < length) {
         ssize_t status = ::send(this->fd,
                               &buffer[bytes_sent],

@@ -22,6 +22,7 @@ void Server::run() {
             Socket client = socket.accept();
             char message_buffer[COMMAND_SIZE];
             client.receive(message_buffer, COMMAND_SIZE);
+            
             std::cout << "Recibido: " << message_buffer << std::endl;
             if (*message_buffer == 's') {
                 client.send(SURRENDER_MESSAGE, SURRENDER_MESSAGE_SIZE);
@@ -32,6 +33,7 @@ void Server::run() {
                 client.receive(number_buffer, NUMBER_SIZE);
                 // validate the received
                 std::cout << "Recibi el nro: " << number_buffer << std::endl;
+                client.send(SURRENDER_MESSAGE, SURRENDER_MESSAGE_SIZE);
             }
             running = false;
         } catch (std::exception& e) {
