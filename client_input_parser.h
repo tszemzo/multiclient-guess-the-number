@@ -10,7 +10,7 @@
 class InputParser {
 public:
     /* Constructor. */
-    explicit InputParser();
+    InputParser();
 
     bool is_number(const std::string& s);
 

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <utility>
 #include "server.h"
 
 #define COMMAND_SIZE 1
@@ -19,22 +20,27 @@ void Server::run() {
     while (running) {
         try {
             std::cout << "Estamos corriendo" << std::endl;
-            Socket client = socket.accept();
-            char message_buffer[COMMAND_SIZE];
-            client.receive(message_buffer, COMMAND_SIZE);
+            Socket client_socket = socket.accept();
+            ClientHandler* client = new ClientHandler(std::move(client_socket),
+                clients.size());
+            clients.push_back(client);
+            client->run();
+
+            // char message_buffer[COMMAND_SIZE];
+            // client_socket.receive(message_buffer, COMMAND_SIZE);
             
-            std::cout << "Recibido: " << message_buffer << std::endl;
-            if (*message_buffer == 's') {
-                client.send(SURRENDER_MESSAGE, SURRENDER_MESSAGE_SIZE);
-            } else if (*message_buffer == 'h') {
-                client.send(HELP_MESSAGE, HELP_MESSAGE_SIZE);
-            } else if (*message_buffer == 'n') {
-                char number_buffer[NUMBER_SIZE];
-                client.receive(number_buffer, NUMBER_SIZE);
-                // validate the received
-                std::cout << "Recibi el nro: " << number_buffer << std::endl;
-                client.send(SURRENDER_MESSAGE, SURRENDER_MESSAGE_SIZE);
-            }
+            // std::cout << "Recibido: " << message_buffer << std::endl;
+            // if (*message_buffer == 's') {
+            //     client_socket.send(SURRENDER_MESSAGE, SURRENDER_MESSAGE_SIZE);
+            // } else if (*message_buffer == 'h') {
+            //     client_socket.send(HELP_MESSAGE, HELP_MESSAGE_SIZE);
+            // } else if (*message_buffer == 'n') {
+            //     char number_buffer[NUMBER_SIZE];
+            //     client_socket.receive(number_buffer, NUMBER_SIZE);
+            //     // validate the received
+            //     std::cout << "Recibi el nro: " << number_buffer << std::endl;
+            //     client_socket.send(SURRENDER_MESSAGE, SURRENDER_MESSAGE_SIZE);
+            // }
             running = false;
         } catch (std::exception& e) {
             if (!running) {

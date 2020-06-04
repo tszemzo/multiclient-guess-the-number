@@ -28,8 +28,9 @@ bool InputParser::is_valid_number(const std::string& input) {
 char InputParser::parse(std::string input) {
     if (input == HELP_INPUT) return HELP_COMMAND;
     else if (input == SURRENDER_INPUT) return SURRENDER_COMMAND;
-    else if(is_number(input) && is_valid_number(input)) return NUMBER_COMMAND;
-    else throw OSError(COMMAND_ERROR_MSG);
+    else if (is_number(input) && is_valid_number(input)) return NUMBER_COMMAND;
+    else 
+        throw OSError(COMMAND_ERROR_MSG);
 }
 
 InputParser::~InputParser() {}

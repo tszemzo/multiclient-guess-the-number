@@ -15,7 +15,7 @@ private:
 
 public:
     // Constructor.
-    Client(Protocol* Protocol);
+    explicit Client(Protocol* Protocol);
 
     void parse_input(std::string input);
     bool is_alive();
