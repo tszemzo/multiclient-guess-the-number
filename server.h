@@ -14,6 +14,8 @@ private:
     std::vector<int> numbers;
     std::vector<ClientHandler*> clients;
     bool running;
+    int winners;
+    int losers;
     
     // No copiable.
     Server(const Server &other) = delete;
@@ -25,6 +27,7 @@ public:
 
     void run();
     void stop();
+    void print_results();
 
     // Destructor.
     ~Server();

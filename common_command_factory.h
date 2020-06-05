@@ -5,6 +5,7 @@
 #include "common_number_command.h"
 #include "common_surrender_command.h"
 #include "common_command.h"
+#include "common_protocol.h"
 #include <string>
 
 /* Clase que funciona como factory para los distintos tipos
@@ -15,7 +16,7 @@ public:
     CommandFactory() {}
 
     /* Recibiendo un comando como char crea el comando correspondiente */
-    Command* make_command(const char command);
+    Command* make_command(const char command, Protocol *protocol, int round, int number);
 
     ~CommandFactory() {}
 };

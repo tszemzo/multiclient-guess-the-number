@@ -14,6 +14,8 @@ Server::Server(const char* service, const char* numbers_file) :
     parser.parse_file(numbers);
     socket.listen();
     running = true;
+    winners = 0;
+    losers = 0;
 }
 
 void Server::run() {
@@ -21,8 +23,10 @@ void Server::run() {
         try {
             std::cout << "Estamos corriendo" << std::endl;
             Socket client_socket = socket.accept();
+            // TODO: here should go a handler for the numbersfile
+            int current_number = numbers[0];
             ClientHandler* client = new ClientHandler(std::move(client_socket),
-                clients.size());
+                clients.size(), current_number);
             clients.push_back(client);
             client->run();
 
@@ -53,6 +57,10 @@ void Server::run() {
 void Server::stop(){
     running = false;
     socket.shutdown(SHUT_RDWR);
+}
+
+void Server::print_results(){
+    std::cout << "Estadísticas:​ \n\t​ Ganadores: " << winners << "\n\tPerdedores: " << losers << std::endl;
 }
 
 Server::~Server() {

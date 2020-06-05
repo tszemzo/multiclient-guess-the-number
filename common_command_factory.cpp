@@ -5,15 +5,15 @@
 #define SURRENDER_COMMAND 's'
 #define NUMBER_COMMAND 'n'
 
-Command* CommandFactory::make_command(const char command) {
+Command* CommandFactory::make_command(const char command, Protocol *protocol, int round, int number) {
     if (command == HELP_COMMAND) {
         std::cout << "its help command" << std::endl;
-        return new Help();
+        return new Help(protocol);
     } else if (command == SURRENDER_COMMAND) {
         std::cout << "its surrender command" << std::endl;
-        return new Surrender();
+        return new Surrender(protocol);
     } else {
         std::cout << "its a number command" << std::endl;
-        return new Number();
+        return new Number(protocol, round, number);
     }
 }

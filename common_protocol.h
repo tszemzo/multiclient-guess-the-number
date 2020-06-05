@@ -33,7 +33,7 @@ public:
     uint16_t receive_number();
 
     /* Envia un numero */
-    void send_number(int& number);
+    void send_number(int number);
 
     /* Envia un comando */
     void send_command(char command);

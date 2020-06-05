@@ -9,15 +9,17 @@
 class ClientHandler {
 private:
     size_t id;
-    bool alive;
     Protocol protocol;
+    bool alive;
+    int round;
+    int number;
 
     // No copiable.
     ClientHandler(const ClientHandler &other) = delete;
     ClientHandler& operator=(const ClientHandler &other) = delete;
 
 public:
-    ClientHandler(Socket&& socket, size_t id);
+    ClientHandler(Socket&& socket, size_t id, int current_number);
     ClientHandler(ClientHandler&& other) = default;
 
     void run();

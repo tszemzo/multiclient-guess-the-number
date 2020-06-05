@@ -25,6 +25,7 @@ int main(int argc, char* argv[]) {
         //     std::string input;
         //     std::cin >> input;
         //     if (input.length() == 1 && input.at(0) == QUIT_COMMAND){
+        //         server.print_results();
         //         server.stop();
         //         break;
         //     }
