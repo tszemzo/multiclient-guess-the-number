@@ -6,6 +6,7 @@
 #include "common_socket.h"
 #include "server_numbers_parser.h"
 #include "server_client_handler.h"
+#include "server_score.h"
 
 class Server {
 private:
@@ -14,8 +15,6 @@ private:
     std::vector<int> numbers;
     std::vector<ClientHandler*> clients;
     bool running;
-    int winners;
-    int losers;
     
     // No copiable.
     Server(const Server &other) = delete;
@@ -27,7 +26,7 @@ public:
 
     void run();
     void stop();
-    void print_results();
+    void print_results(Score &score);
 
     // Destructor.
     ~Server();

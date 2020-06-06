@@ -2,6 +2,7 @@
 #include <string>
 #include "common_os_error.h"
 #include "server.h"
+#include "server_score.h"
 
 #define SUCCESS 0
 #define ERROR 1
@@ -20,7 +21,7 @@ int main(int argc, char* argv[]) {
         Server server(argv[SERVICE], argv[NUMBERS_FILE]);
         // lanzo el thread
         server.run();
-        // chequeo si alguino me manda una Q, cierro todo.
+        // chequeo si me mandan una Q, cierro todo.
         // while (true){
         //     std::string input;
         //     std::cin >> input;

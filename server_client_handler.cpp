@@ -2,12 +2,13 @@
 #include <string>
 #include <vector>
 #include <utility>
-#include "server_client_handler.h"
 #include "common_os_error.h"
 #include "common_command_factory.h"
+#include "server_client_handler.h"
 
-ClientHandler::ClientHandler(Socket&& socket, size_t id, int current_number) : 
-    protocol(std::move(socket)), number(current_number) {
+
+ClientHandler::ClientHandler(Socket&& socket, size_t id, int current_number, Score &score) 
+    : protocol(std::move(socket)), number(current_number), score(score) {
     alive = false;
     round = 0;
     this->id = id;
@@ -18,11 +19,11 @@ void ClientHandler::run() {
     while (alive) {
         try {
             char command = this->protocol.receive_command();
-            std::cout << "Cliente " << std::to_string(id) 
-                << ": " << command << std::endl;
+            score.print_score();
             CommandFactory command_factory;
-            Command* current_command = command_factory.make_command(command, &protocol, round, number);
+            Command* current_command = command_factory.make_command(command, &protocol, score, round, number);
             current_command->execute();
+            std::cout << round << std::endl;
         } catch (std::exception& e) {
             std::cout << e.what() << std::endl;
         }
