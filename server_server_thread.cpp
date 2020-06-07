@@ -1,6 +1,6 @@
 #include <iostream>
 #include <utility>
-#include "server.h"
+#include "server_server_thread.h"
 
 #define COMMAND_SIZE 1
 #define NUMBER_SIZE 2
@@ -9,15 +9,15 @@
 #define HELP_MESSAGE "Comandos válidos: \n\t​ AYUDA: despliega la lista de comandos válidos​ \n\t​ RENDIRSE: pierde el juego automáticamente​ \n\t​ XXX: Número de 3 cifras a ser enviado al servidor para adivinar el número secreto"
 #define HELP_MESSAGE_SIZE 216
 
-Server::Server(const char* service, const char* numbers_file) : 
+ServerThread::ServerThread(const char* service, const char* numbers_file) : 
     socket(service), parser(numbers_file) {
     parser.parse_file(numbers);
     socket.listen();
     running = true;
 }
 
-void Server::run() {
-    Score score;
+void ServerThread::run() {
+    // Score score;
     while (running) {
         try {
             std::cout << "Estamos corriendo" << std::endl;
@@ -38,14 +38,15 @@ void Server::run() {
     }
 }
 
-void Server::stop(){
+void ServerThread::stop(){
     running = false;
     socket.shutdown(SHUT_RDWR);
 }
 
-void Server::print_results(Score &score){
+// void ServerThread::print_results(Score &score){
+void ServerThread::print_results(){
     score.print_score();
 }
 
-Server::~Server() {
+ServerThread::~ServerThread() {
 }

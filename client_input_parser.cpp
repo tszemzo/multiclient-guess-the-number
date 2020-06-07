@@ -10,8 +10,8 @@
 #define HELP_COMMAND 'h'
 #define SURRENDER_COMMAND 's'
 #define NUMBER_COMMAND 'n'
-#define MAX_UNSIGNED_NUMBER 32767
-#define MIN_UNSIGNED_NUMBER -32768
+#define MAX_UNSIGNED_NUMBER 65535
+#define MIN_UNSIGNED_NUMBER 0
 
 InputParser::InputParser() {}
 

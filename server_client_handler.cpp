@@ -33,7 +33,6 @@ void ClientHandler::run() {
         this->protocol.send_string(LOSE_MESSAGE);
         score.add_loser();
     }
-    score.print_score();
 }
 
 void ClientHandler::stop(){
