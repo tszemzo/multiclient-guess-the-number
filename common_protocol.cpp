@@ -81,6 +81,4 @@ void Protocol::shutdown(int mode){
     socket.shutdown(mode);
 }
 
-Protocol::~Protocol() {
-    socket.shutdown(SHUT_RDWR);
-}
+Protocol::~Protocol() {}

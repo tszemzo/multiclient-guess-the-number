@@ -7,6 +7,5 @@ Surrender::Surrender(Protocol *protocol, Game &game) : game(game) {
 }
 
 void Surrender::execute() {
-    std::cout << "Ejecutandome SURRENDER" << std::endl;
     game.lost();
 }

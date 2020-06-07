@@ -30,7 +30,6 @@ void Number::execute() {
 }
 
 void Number::process(uint16_t number) {
-    std::cout << "On the PROCESS im receiving " << number << std::endl;
     if (number == game.guess_number()) {
         socket_protocol->send_string(WIN_MESSAGE);
         game.won();

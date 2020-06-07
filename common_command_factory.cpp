@@ -7,7 +7,6 @@
 
 Command* CommandFactory::make_command(const char command, Protocol *protocol,
     Game &game) {
-    // Game &game, Score &score, int &round, int number) {
     if (command == HELP_COMMAND) {
         return new Help(protocol);
     } else if (command == SURRENDER_COMMAND) {

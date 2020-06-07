@@ -24,7 +24,6 @@ void ClientHandler::run() {
         Command* current_command = command_factory.make_command(command, 
         &protocol, game);
         current_command->execute();
-        std::cout << "Round: " << game.get_round() << std::endl;
         delete current_command;
     }
     if (game.has_winner()){
@@ -47,3 +46,5 @@ bool ClientHandler::is_alive() const {
 void ClientHandler::send_message(std::string message) {
     protocol.send_string(message);
 }
+
+ClientHandler::~ClientHandler() {}

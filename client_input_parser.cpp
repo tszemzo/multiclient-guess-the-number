@@ -21,9 +21,13 @@ bool InputParser::is_number(const std::string& s) {
 }
 
 bool InputParser::is_valid_number(const std::string& input) {
-	int int_number = std::stoi(input);
-    return int_number >= MIN_UNSIGNED_NUMBER && 
-           int_number <= MAX_UNSIGNED_NUMBER;
+    try {
+        int int_number = std::stoi(input);
+        return int_number >= MIN_UNSIGNED_NUMBER && 
+               int_number <= MAX_UNSIGNED_NUMBER;
+    } catch(...) {
+        throw OSError(COMMAND_ERROR_MSG);
+    }
 }
 
 char InputParser::parse(std::string input) {

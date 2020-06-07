@@ -4,11 +4,13 @@
 #include <string>
 #include <vector>
 #include "common_socket.h"
+#include "common_thread.h"
 #include "common_protocol.h"
 #include "server_score.h"
 #include "common_game.h"
 
-class ClientHandler {
+class ClientHandler : public Thread {
+// class ClientHandler {
 private:
     size_t id;
     Protocol protocol;
@@ -24,7 +26,8 @@ public:
     ClientHandler(Socket&& socket, size_t id, int current_number, Score &score);
     ClientHandler(ClientHandler&& other) = default;
 
-    void run();
+    void run() override;
+    // void run();
 
     void stop();
 
@@ -33,7 +36,8 @@ public:
 
     void send_message(std::string message);
 
-    ~ClientHandler() = default;
+    ~ClientHandler() override;
+    // ~ClientHandler() {};
 };
 
 #endif

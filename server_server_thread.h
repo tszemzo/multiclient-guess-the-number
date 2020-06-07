@@ -29,7 +29,6 @@ public:
     void run();
     void stop();
     void print_results();
-    // void print_results(Score &score);
 
     // Destructor.
     ~ServerThread() override;

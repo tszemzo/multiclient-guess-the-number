@@ -13,13 +13,11 @@ Client::Client(Protocol* protocol) {
 
 void Client::run() {
     InputParser input_parser;
-    std::cout << "Client running" << std::endl;
     while (alive) {
         try {
             std::string input;
             std::getline(std::cin, input);
             char command = input_parser.parse(input);
-            std::cout << "Command: " << command << std::endl;
             socket_protocol->send_command(command);
             if (input_parser.is_number(input)) {
                 int number = std::stoi(input);
