@@ -17,6 +17,7 @@ public:
     // Constructor.
     explicit Client(Protocol* Protocol);
 
+    bool has_finish(std::string response);
     void parse_input(std::string input);
     bool is_alive();
     void run();

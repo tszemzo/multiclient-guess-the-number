@@ -13,7 +13,7 @@ class Help : public Command {
 		Protocol *socket_protocol;
 	public:
 		/*Constructor de la clase.*/
-		Help(Protocol *protocol);
+		explicit Help(Protocol *protocol);
 
 		/*Ejecuta el comando*/
 		void execute() override;

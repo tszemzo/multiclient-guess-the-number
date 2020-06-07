@@ -10,8 +10,8 @@
 #define HELP_COMMAND 'h'
 #define SURRENDER_COMMAND 's'
 #define NUMBER_COMMAND 'n'
-#define MAX_NUMBER 999
-#define MIN_NUMBER 100
+#define MAX_UNSIGNED_NUMBER 32767
+#define MIN_UNSIGNED_NUMBER -32768
 
 InputParser::InputParser() {}
 
@@ -22,7 +22,8 @@ bool InputParser::is_number(const std::string& s) {
 
 bool InputParser::is_valid_number(const std::string& input) {
 	int int_number = std::stoi(input);
-    return int_number >= MIN_NUMBER && int_number <= MAX_NUMBER;
+    return int_number >= MIN_UNSIGNED_NUMBER && 
+           int_number <= MAX_UNSIGNED_NUMBER;
 }
 
 char InputParser::parse(std::string input) {

@@ -46,7 +46,6 @@ uint16_t Protocol::receive_number(){
     uint16_t number;
     memcpy(&number, number_buffer, NUMBER_SIZE);
     uint16_t value = ntohs(number);
-    std::cout << "The protocol is receiveing " << value << std::endl;
     return value;
 }
 
@@ -55,7 +54,6 @@ void Protocol::send_number(int number) {
     uint16_t big_endian_number = ntohs(number);
     char number_buffer[NUMBER_SIZE];
     memcpy(number_buffer, &big_endian_number, NUMBER_SIZE);
-    std::cout << "What we have on the buff: " << number_buffer << std::endl;
     socket.send(number_buffer, NUMBER_SIZE);
 }
 
@@ -75,7 +73,6 @@ void Protocol::send_string_size(int size) {
 
 void Protocol::send_string(const std::string& buffer) {
     int buffer_size = buffer.size();
-    std::cout << "The size is " << buffer_size;
     send_string_size(buffer_size);
     socket.send(buffer.data(), buffer.size());
 }

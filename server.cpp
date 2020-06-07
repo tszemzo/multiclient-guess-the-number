@@ -29,6 +29,7 @@ void Server::run() {
             clients.push_back(client);
             client->run();
             running = false;
+            delete client;
         } catch (std::exception& e) {
             if (!running) {
                 return;

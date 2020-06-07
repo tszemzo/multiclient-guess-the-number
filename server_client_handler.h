@@ -6,13 +6,13 @@
 #include "common_socket.h"
 #include "common_protocol.h"
 #include "server_score.h"
+#include "common_game.h"
 
 class ClientHandler {
 private:
     size_t id;
     Protocol protocol;
     bool alive;
-    int round;
     int number;
     Score &score;
 

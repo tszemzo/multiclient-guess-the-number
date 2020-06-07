@@ -5,15 +5,17 @@
 #include <string>
 #include "common_command.h"
 #include "common_protocol.h"
+#include "common_game.h"
 
 /* Clase que representa a un comando de tipo Help
  */
 class Surrender : public Command {
 	private:
 		Protocol *socket_protocol;
+		Game &game;
 	public:
 		/*Constructor de la clase.*/
-		Surrender(Protocol *protocol);
+		explicit Surrender(Protocol *protocol, Game &game);
 
 		/*Ejecuta el comando*/
 		void execute() override;

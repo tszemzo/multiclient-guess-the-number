@@ -6,15 +6,13 @@
 #define NUMBER_COMMAND 'n'
 
 Command* CommandFactory::make_command(const char command, Protocol *protocol,
-    Score &score, int round, int number) {
+    Game &game) {
+    // Game &game, Score &score, int &round, int number) {
     if (command == HELP_COMMAND) {
-        std::cout << "its help command" << std::endl;
         return new Help(protocol);
     } else if (command == SURRENDER_COMMAND) {
-        std::cout << "its surrender command" << std::endl;
-        return new Surrender(protocol);
+        return new Surrender(protocol, game);
     } else {
-        std::cout << "its a number command" << std::endl;
-        return new Number(protocol, round, number, score);
+        return new Number(protocol, game);
     }
 }

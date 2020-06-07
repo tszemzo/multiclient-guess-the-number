@@ -79,7 +79,6 @@ int Socket::send(const char* buffer, size_t length){
 }
 
 int Socket::receive(char* buffer, size_t length){
-    std::cout << "Entro al receiver" << std::endl;
     size_t bytes_received = 0;
     while (bytes_received < length) {
         ssize_t status = recv(this->fd,
