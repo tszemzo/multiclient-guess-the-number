@@ -111,14 +111,14 @@ std::string Number::parse_results(std::map<std::string, int> results) {
     std::string result_message;
     if (results[GOOD] > 0 && results[REGULAR] > 0) {
         result_message = std::to_string(results[GOOD]) + " " + GOOD + ", " +
-        std::to_string(results[REGULAR]) + " " + REGULAR + "\n";
+        std::to_string(results[REGULAR]) + " " + REGULAR;
     } else if (results[GOOD] > 0) {
-        std::cout << results[GOOD] << " " << GOOD << std::endl;
-        result_message = std::to_string(results[GOOD]) + " " + GOOD + "\n";
+        // std::cout << results[GOOD] << " " << GOOD << std::endl;
+        result_message = std::to_string(results[GOOD]) + " " + GOOD;
     } else {
-        std::cout << results[REGULAR] << " " << REGULAR << std::endl;
+        // std::cout << results[REGULAR] << " " << REGULAR << std::endl;
         result_message = std::to_string(results[REGULAR]) + " " + 
-        REGULAR + "\n";
+        REGULAR;
     }
     return result_message;
 }
