@@ -19,7 +19,7 @@ bool Score::add_loser() {
 
 void Score::print_score() {
 	std::unique_lock<std::mutex> lk(m);
-    std::cout << "Estadísticas:\n\t​Ganadores:  " << winners 
+    std::cout << "Estadísticas:\n\tGanadores:  " << winners 
 	<< "\n\tPerdedores: " << losers << std::endl;
 }
 
