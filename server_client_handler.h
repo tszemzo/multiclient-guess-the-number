@@ -10,7 +10,6 @@
 #include "common_game.h"
 
 class ClientHandler : public Thread {
-// class ClientHandler {
 private:
     size_t id;
     Protocol protocol;
@@ -27,7 +26,6 @@ public:
     ClientHandler(ClientHandler&& other) = default;
 
     void run() override;
-    // void run();
 
     void stop();
 
@@ -37,7 +35,6 @@ public:
     void send_message(std::string message);
 
     ~ClientHandler() override;
-    // ~ClientHandler() {};
 };
 
 #endif

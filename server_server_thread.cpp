@@ -13,8 +13,7 @@ void ServerThread::run() {
     while (running) {
         try {
             Socket client_socket = socket.accept();
-            // TODO: here should go a handler for the numbersfile
-            int current_number = numbers[0];
+            int current_number = numbers.next_number();
             ClientHandler* client = new ClientHandler(std::move(client_socket),
                 clients.size(), current_number, score);
             clients.push_back(client);

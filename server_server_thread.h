@@ -8,13 +8,14 @@
 #include "server_numbers_parser.h"
 #include "server_client_handler.h"
 #include "server_score.h"
+#include "server_numbers_handler.h"
 
 class ServerThread : public Thread {
 private:
     Socket socket;
     NumbersParser parser;
     Score score;
-    std::vector<int> numbers;
+    NumbersHandler numbers;
     std::vector<ClientHandler*> clients;
     bool running;
     
@@ -29,6 +30,7 @@ public:
     void run();
     void stop();
     void print_results();
+    void garbage_collector();
 
     // Destructor.
     ~ServerThread() override;

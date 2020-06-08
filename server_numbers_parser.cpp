@@ -16,12 +16,11 @@ NumbersParser::NumbersParser(const char *filename) {
 	}
 }
 
-void NumbersParser::parse_file(std::vector<int> &numbers){
+void NumbersParser::parse_file(NumbersHandler &numbers){
     std::string line;
 
     while (!numbers_file.eof()) {
         std::getline(numbers_file, line, '\n');
-        std::cout << line << std::endl;
         if (line.length() <= 0) break;
 		validate_number(line);
         int current = std::stoi(line);

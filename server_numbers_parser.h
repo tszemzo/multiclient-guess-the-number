@@ -5,6 +5,7 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include "server_numbers_handler.h"
 
 /*Clase que parsea el archivo de numeros cuando se inicia el servidor.*/
 class NumbersParser {
@@ -18,7 +19,7 @@ public:
     explicit NumbersParser(const char* filename);
 
     /*Llena el array con los numeros obtenidos en el archivo.*/
-    void parse_file(std::vector<int> &numbers);
+    void parse_file(NumbersHandler &numbers);
 
     /*Valida un numero leido del archivo lanzando excepcion en caso de error.*/
     void validate_number(std::string number);
