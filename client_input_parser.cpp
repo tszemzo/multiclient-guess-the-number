@@ -4,7 +4,7 @@
 #include "client_input_parser.h"
 #include "common_os_error.h"
 
-#define COMMAND_ERROR_MSG "Error: comando inválido. Escriba AYUDA para obtener ayuda"
+#define CMD_ERROR "Error: comando inválido. Escriba AYUDA para obtener ayuda"
 #define HELP_INPUT "AYUDA"
 #define SURRENDER_INPUT "RENDIRSE"
 #define HELP_COMMAND 'h'
@@ -26,7 +26,7 @@ bool InputParser::is_valid_number(const std::string& input) {
         return int_number >= MIN_UNSIGNED_NUMBER && 
                int_number <= MAX_UNSIGNED_NUMBER;
     } catch(...) {
-        throw OSError(COMMAND_ERROR_MSG);
+        throw OSError(CMD_ERROR);
     }
 }
 
@@ -35,7 +35,7 @@ char InputParser::parse(std::string input) {
     else if (input == SURRENDER_INPUT) return SURRENDER_COMMAND;
     else if (is_number(input) && is_valid_number(input)) return NUMBER_COMMAND;
     else 
-        throw OSError(COMMAND_ERROR_MSG);
+        throw OSError(CMD_ERROR);
 }
 
 InputParser::~InputParser() {}
