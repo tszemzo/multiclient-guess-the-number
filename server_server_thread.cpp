@@ -18,7 +18,7 @@ void ServerThread::run() {
                 clients.size(), current_number, score);
             clients.push_back(client);
             client->start();
-            if(running) garbage_collector();
+            if (running) garbage_collector();
         } catch (std::exception& e) {
             if (!running) {
                 return;

@@ -32,8 +32,7 @@ void ClientHandler::run() {
     }
     if (game.has_winner()){
         score.add_winner();
-    } 
-    else {
+    } else {
         if (alive) this->protocol.send_string(LOSE_MESSAGE);
         score.add_loser();
     }
