@@ -9,6 +9,8 @@
 #include "server_score.h"
 #include "common_game.h"
 
+/* Clase que representa a un handler del cliente desde el server */
+/* Esta implementacion lo hace a traves de hilos */
 class ClientHandler : public Thread {
 private:
     size_t id;
@@ -25,13 +27,16 @@ public:
     ClientHandler(Socket&& socket, size_t id, int current_number, Score &score);
     ClientHandler(ClientHandler&& other) = default;
 
+    /* Corre al hilo correspondiente */
     void run() override;
 
+    /* Frena al hilo correspondiente */
     void stop();
 
-    /* Indica si ya terminó su ejecución */
+    /* Indica si la ejecucion esta viva */
     bool is_alive() const;
 
+    /* Envia un mensaje a traves del protocolo*/
     void send_message(std::string message);
 
     ~ClientHandler() override;

@@ -10,6 +10,8 @@
 #include "server_score.h"
 #include "server_numbers_handler.h"
 
+/* Clase que representa al servidor. */
+/* Esta implementacion lo hace a traves de un hilo de ejecucion */
 class ServerThread : public Thread {
 private:
     Socket socket;
@@ -27,9 +29,16 @@ public:
     // Constructor.
     ServerThread(const char* service, const char* numbers_file);
 
+    /* Metodo que lanza el hilo de ejecucion */
     void run();
+
+    /* Metodo que frena el hilo de ejecucion */
     void stop();
+
+    /* Imprime los resultados finales de la ejecucion */
     void print_results();
+
+    /* En cada iteracion del server recolecta los clientes muertos*/
     void garbage_collector();
 
     // Destructor.

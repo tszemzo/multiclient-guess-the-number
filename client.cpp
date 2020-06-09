@@ -21,7 +21,6 @@ void Client::run() {
             socket_protocol->send_command(command);
             if (input_parser.is_number(input)) {
                 int number = std::stoi(input);
-                // std::cout << number << std::endl;
                 socket_protocol->send_number(number);
             }
             std::string response = socket_protocol->receive_response();

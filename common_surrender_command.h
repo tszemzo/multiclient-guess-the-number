@@ -7,8 +7,7 @@
 #include "common_protocol.h"
 #include "common_game.h"
 
-/* Clase que representa a un comando de tipo Help
- */
+/* Clase que representa a un comando de tipo Surrender */
 class Surrender : public Command {
 	private:
 		Protocol *socket_protocol;

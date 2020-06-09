@@ -5,7 +5,7 @@
 #include <iostream>
 #include <vector>
 
-/*Clase que modela el tanteador del programa.*/
+/*Clase que modela el handler de los numeros obtenidos del archivo.*/
 class NumbersHandler {
 private:
     unsigned int current_index;

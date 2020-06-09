@@ -23,13 +23,18 @@ void ClientHandler::run() {
         CommandFactory command_factory;
         Command* current_command = command_factory.make_command(command, 
         &protocol, game);
+        if (!alive) {
+            delete current_command;
+            break;
+        }        
         current_command->execute();
         delete current_command;
     }
     if (game.has_winner()){
         score.add_winner();
-    } else {
-        this->protocol.send_string(LOSE_MESSAGE);
+    } 
+    else {
+        if (alive) this->protocol.send_string(LOSE_MESSAGE);
         score.add_loser();
     }
 }

@@ -4,9 +4,7 @@
 #include <string>
 #include <iostream>
 
-/* Clase que funciona como factory para los distintos tipos
- * de comando de la aplicacion
- */
+/* Clase que modela la clase Comando del modelo */
 class Command {
 public:
     Command() {}
@@ -17,4 +15,4 @@ public:
     virtual ~Command() {}
 };
 
-#endif // COMMAND_FACTORY_H
+#endif // COMMAND_H

@@ -18,12 +18,27 @@ void ServerThread::run() {
                 clients.size(), current_number, score);
             clients.push_back(client);
             client->start();
+            if(running) garbage_collector();
         } catch (std::exception& e) {
             if (!running) {
                 return;
             }
         }
     }
+}
+
+void ServerThread::garbage_collector(){
+    std::vector<ClientHandler*> tmp;
+    std::vector<ClientHandler*>::iterator it = clients.begin();
+    for (; it != clients.end(); ++it) {
+        if (!((*it)->is_alive())) {
+            (*it)->join();
+            delete *it;
+            continue;
+        }
+        tmp.push_back(*it);
+    }
+    clients.swap(tmp);
 }
 
 void ServerThread::stop(){
